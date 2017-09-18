@@ -1,0 +1,72 @@
+<div class="cart box_1" style="float: left">
+    <a>
+        <h2>
+            <div class="total">
+                <span class="simpleCart_total">Produtos</span>
+            </div>
+        </h2>
+    </a>
+</div>
+<div class="row" ng-controller="ProdutoController">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th># ID</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="produto in produtos">
+            <td>{{ produto.idProduto }}</td>
+            <td>{{ produto.nomeProduto }}</td>
+            <td>{{ produto.quantidade }}</td>
+            <td>{{ produto.precoProduto }}</td>
+            <td>
+                <button type="button" class="btn btn-default" ng-click="getProduto(produto.idProduto)" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Editar</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteProduto(produto.idProduto)">Remover</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Novo Produto</button>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Produto</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Nome do Produto:</label>
+                            <input type="text" class="form-control" ng-model="produto.nomeProduto"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Quantidade:</label>
+                            <input type="text" class="form-control" ng-model="produto.quantidade"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Preço unitário:</label>
+                            <input type="text" class="form-control" ng-model="produto.precoProduto"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-target=".bs-example-modal-sm" ng-if="produto.idProduto == null" ng-click="addProduto()">Salvar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-target=".bs-example-modal-sm" ng-if="produto.idProduto != null" ng-click="updateProduto()">Atualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
